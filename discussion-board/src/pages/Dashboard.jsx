@@ -36,12 +36,13 @@ function Dashboard() {
                 <h1>Do you best today.</h1>
                 <h2>{getCurrentDateTime()[0]}</h2>
             </div>
-            <div>
-                <h1>Discussions</h1>
-                <ul>
+            <div id='discussion-container'>
+                <h1>Latest Discussions</h1>
+                <ul id='discussion-list-container'>
                     {discussions.map(discussion => (
                         <li key={discussion._id}>
-                            <Link to={`/discussion/${discussion._id}`}>{discussion.title}</Link>
+                            <Link to={`/discussion/${discussion._id}`}>{discussion.title}</Link>  by {discussion.author.username}
+                            <p>{'>'} {discussion.content}</p>
                         </li>
                     ))}
                 </ul>

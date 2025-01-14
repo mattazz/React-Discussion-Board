@@ -19,7 +19,7 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    // Log
+    // Log because I'm unsure
     console.log('Login route hit');
 
     try {
