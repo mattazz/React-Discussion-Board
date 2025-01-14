@@ -51,18 +51,25 @@ const Discussion = () => {
     }
 
     return (
-        <div>
-            <h1>{"Title: " + discussion.title}</h1>
-            <p>{"Content: " + discussion.content}</p>
-            <h2>Posts</h2>
-            <ul>
-                {posts.map(post => (
-                    <li key={post._id}>
-                        <p>{post.content}</p>
-                        <p>By: {post.author.username}</p>
-                    </li>
-                ))}
-            </ul>
+        <div id='in-post-container'>
+            <h1>{discussion.title}</h1>
+            <p>{discussion.content}</p>
+            <h2>Comments</h2>
+            <div id='comment-container'>
+                <ul>
+                    {posts.length > 0 ? (
+                        posts.map(post => (
+                            <li key={post._id}>
+                                <p>{post.content}</p>
+                                <p>By: {post.author.username}</p>
+                            </li>
+                        ))
+                    ) : (
+                        <li>No comments yet.</li>
+                    )}
+                </ul>
+            </div>
+
             <h2>Add a Post</h2>
             <form onSubmit={handlePostSubmit}>
                 <div>
