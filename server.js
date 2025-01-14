@@ -4,6 +4,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
 const discussionRoutes = require('./routes/discussions'); // Import the discussions routes
+require('dotenv').config();
+
 
 const app = express();
 const PORT = 5001;
