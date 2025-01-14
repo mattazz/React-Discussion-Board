@@ -1,0 +1,127 @@
+.App {
+  text-align: center;
+}
+
+#login-section{
+  border: 1px solid yellow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#dashboard-greeting{
+  border: 1px solid yellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#dashboard-greeting * {
+  /* border: 1px solid red; */
+  margin: 0px;
+}
+
+#login-section * {
+  border: 1px solid red;
+}
+#login-input{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#login-input input {
+  padding: 10px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+body{
+  background-color: #282c34;
+  color: white;
+}
+
+nav > ul, li {
+  list-style-type: none;
+}
+
+nav ul li {
+  border: 1px solid red;
+}
+
+nav button{
+  all: unset;
+  color: white;
+}
+
+button {
+  background-color: hsl(246, 52%, 57%);
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #45a049;
+  }
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  background-color: #333;
+}
+
+nav ul li {
+  padding: 14px 20px;
+}
+
+#post-new-disc{
+  text-align: center;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  display: block;
+}
+
+nav ul li:hover {
+  background-color: #575757;
+}
+a {
+  color: white;
+}
+h1 {
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.centered{
+  border: 1px solid yellow;
+  text-align: center;
+  color: white;
+}
+
+
