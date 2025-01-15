@@ -30,6 +30,11 @@ function Dashboard() {
         return [`${year}-${month}-${day}`, `${hours}:${minutes}:${seconds}`];
     }
 
+    const formatDate = (dateString) => {
+        const options = { month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    }
+
     return (
         <div>
             <div id='dashboard-greeting'>
@@ -42,9 +47,9 @@ function Dashboard() {
                     {discussions.map(discussion => (
                         <li key={discussion._id}>
                             <div id='discussion-list-user'>
-                            <Link  to={`/discussion/${discussion._id}`}>{discussion.title}</Link>  by {discussion.author.username}
+                            <Link  to={`/discussion/${discussion._id}`}>{discussion.title}</Link>  by {discussion.author.username} on {formatDate(discussion.createdAt)}
                             </div>
-                            <p>{'>'} {discussion.content}</p>
+                            <p>{'>'}{discussion.content}</p>
                         </li>
                     ))}
                 </ul>

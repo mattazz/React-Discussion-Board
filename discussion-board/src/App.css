@@ -34,7 +34,7 @@
   color: black;
   padding: 8px;
   border-radius: 20px;
-  width: 15vw;
+  width: 20vw;
 }
 #discussion-list-user *{
   color: black;
@@ -52,7 +52,6 @@
   /* border: 1px solid red; */
   margin: 0px;
 }
-
 
 
 #add-post-container{
@@ -100,10 +99,15 @@
   overflow: auto;
 }
 
+#in-post-container * {
+  /* border: 1px solid red; */
+}
+
 #comment-container ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  width: 50vw;
 }
 
 #in-post-container form {
@@ -124,6 +128,17 @@
   justify-content: center;
 }
 
+.italic{
+  font-style: italic;
+}
+
+#comment-container ul li{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.245);
+  margin: 10px;
+}
 #login-section * {
   border: 1px solid red;
 }

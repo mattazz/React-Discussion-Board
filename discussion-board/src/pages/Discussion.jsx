@@ -61,7 +61,7 @@ const Discussion = () => {
                         posts.map(post => (
                             <li key={post._id}>
                                 <p>{post.content}</p>
-                                <p>By: {post.author.username}</p>
+                                <p className='italic'>By: {post.author.username}</p>
                             </li>
                         ))
                     ) : (
