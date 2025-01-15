@@ -139,17 +139,32 @@
   border: 1px solid rgba(255, 255, 255, 0.245);
   margin: 10px;
 }
-#login-section * {
-  border: 1px solid red;
-}
+
 #login-input{
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 15px;
+  width: 50vw;
+}
+#login-input > div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+#login-input > div > input{
+  width: 50%;
+  align-items: center;
 }
 
 #login-input input {
   padding: 10px;
+}
+
+#login-input > button{
+  width: 50%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
