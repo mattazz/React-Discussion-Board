@@ -10,7 +10,8 @@ function Dashboard() {
         const fetchDiscussions = async () => {
             try {
                 const response = await axios.get('http://localhost:5001/api/discussions');
-                setDiscussions(response.data);
+                const sortedDiscussions = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                setDiscussions(sortedDiscussions);
             } catch (error) {
                 console.error('Error fetching discussions:', error);
             }
@@ -35,10 +36,20 @@ function Dashboard() {
         return new Date(dateString).toLocaleDateString(undefined, options);
     }
 
+    function shortenString(str){
+        return str.length > 300 ? str.substring(0, 300) + '...' : str;
+    }
+
+    function randomGreeting(){
+        const greetList = ["Do you best today!", "Have some fun.", "Seize the day", "Ad aspera ad astra.", "Magis"]
+        return greetList[Math.floor(Math.random() * greetList.length)];
+    }
+
+
     return (
         <div>
             <div id='dashboard-greeting'>
-                <h1>Do you best today.</h1>
+                <h1>{randomGreeting()}</h1>
                 <h2>{getCurrentDateTime()[0]}</h2>
             </div>
             <div id='discussion-container'>
@@ -47,9 +58,9 @@ function Dashboard() {
                     {discussions.map(discussion => (
                         <li key={discussion._id}>
                             <div id='discussion-list-user'>
-                            <Link  to={`/discussion/${discussion._id}`}>{discussion.title}</Link>  by {discussion.author.username} on {formatDate(discussion.createdAt)}
+                            <Link  to={`/discussion/${discussion._id}`}>{(discussion.title)}</Link>  by {discussion.author.username} on {formatDate(discussion.createdAt)}
                             </div>
-                            <p>{'>'}{discussion.content}</p>
+                            <p>{'>'}{shortenString(discussion.content)}</p>
                         </li>
                     ))}
                 </ul>
