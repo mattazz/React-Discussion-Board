@@ -41,7 +41,9 @@ function Dashboard() {
                 <ul id='discussion-list-container'>
                     {discussions.map(discussion => (
                         <li key={discussion._id}>
-                            <Link to={`/discussion/${discussion._id}`}>{discussion.title}</Link>  by {discussion.author.username}
+                            <div id='discussion-list-user'>
+                            <Link  to={`/discussion/${discussion._id}`}>{discussion.title}</Link>  by {discussion.author.username}
+                            </div>
                             <p>{'>'} {discussion.content}</p>
                         </li>
                     ))}

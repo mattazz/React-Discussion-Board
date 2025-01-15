@@ -54,8 +54,8 @@ const Discussion = () => {
         <div id='in-post-container'>
             <h1>{discussion.title}</h1>
             <p>{discussion.content}</p>
-            <h2>Comments</h2>
             <div id='comment-container'>
+            <h2>Comments</h2>
                 <ul>
                     {posts.length > 0 ? (
                         posts.map(post => (
@@ -69,19 +69,22 @@ const Discussion = () => {
                     )}
                 </ul>
             </div>
-
-            <h2>Add a Post</h2>
-            <form onSubmit={handlePostSubmit}>
-                <div>
-                    <label htmlFor="newPostContent">Content:</label>
-                    <textarea
-                        id="newPostContent"
-                        value={newPostContent}
-                        onChange={(e) => setNewPostContent(e.target.value)}
-                    />
-                </div>
-                <button type="submit">Post</button>
-            </form>
+            <div id='add-post-container'> 
+                <h3>Add a Comment</h3>
+                <form onSubmit={handlePostSubmit} id='post-form-container'>
+                    <div>
+                        <label htmlFor="newPostContent"></label>
+                        <textarea
+                            id="newPostContent"
+                            className='text-area'
+                            value={newPostContent}
+                            placeholder='Add comment here'
+                            onChange={(e) => setNewPostContent(e.target.value)}
+                        />
+                    </div>
+                    <button type="submit">Post</button>
+                </form>
+            </div>
         </div>
     );
 };

@@ -10,19 +10,34 @@
   justify-content: center;
 }
 
+#discussion-container{
+  padding: 20px;
+}
+
 #discussion-list-container li{
   /* border: 1px solid white; */
   margin: 10px;
-  padding: 10px;
+  padding: 40px;
   border-radius: 10px;
+  border: 1px solid white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out;
-
   &:hover {
     transform: scale(1.01);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
+}
 
+#discussion-list-user{
+  border: 1px solid white;
+  background-color: white;
+  color: black;
+  padding: 8px;
+  border-radius: 20px;
+  width: 15vw;
+}
+#discussion-list-user *{
+  color: black;
 }
 
 #dashboard-greeting{
@@ -36,6 +51,77 @@
 #dashboard-greeting * {
   /* border: 1px solid red; */
   margin: 0px;
+}
+
+
+
+#add-post-container{
+  border-top: 3px solid white;
+  margin-top: 20px;
+  display: flex;
+  width: 100vw;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#add-post-container > form{
+  display: flex;
+  align-items: center;
+}
+#add-post-container > form > button {
+  width: 30vw;
+}
+
+#add-post-container > form  textarea {
+  width: 30vw;
+  height: 100px;
+  padding: 20px;
+}
+
+
+
+
+#post-form-container{
+  /* border: 1px solid yellow; */
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+}
+
+/*  */
+#in-post-container{
+  /* border: 1px solid yellow; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: auto;
+}
+
+#comment-container ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#in-post-container form {
+  width: 100%; /* Ensure child elements take full width */
+  text-align: center; /* Center text inside elements */
+}
+
+#in-post-container ul{
+  /* border: 1px solid yellow; */
+  text-decoration: none;
+}
+
+#comment-container{
+  /* border: 1px solid purple; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #login-section * {
