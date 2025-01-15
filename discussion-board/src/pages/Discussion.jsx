@@ -52,8 +52,11 @@ const Discussion = () => {
 
     return (
         <div id='in-post-container'>
-            <h1>{discussion.title}</h1>
-            <p>{discussion.content}</p>
+            <div id='discussion-header'>
+                
+                <h1>{discussion.title}</h1>
+                <p>{discussion.content}</p>
+            </div>
             <div id='comment-container'>
             <h2>Comments</h2>
                 <ul>

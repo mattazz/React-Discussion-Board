@@ -29,7 +29,7 @@ function App() {
   return (
     <Router>
       <div>
-        <nav>
+        <nav id='navbar'>
           <ul>
             <li>
               <Link to="/dashboard">Home</Link>

@@ -20,7 +20,7 @@ function Dashboard() {
         fetchDiscussions();
     }, []);
 
-    function getCurrentDateTime(){
+    function getCurrentDateTime() {
         const now = new Date();
         const year = now.getFullYear();
         const month = String(now.getMonth() + 1).padStart(2, '0');
@@ -36,11 +36,11 @@ function Dashboard() {
         return new Date(dateString).toLocaleDateString(undefined, options);
     }
 
-    function shortenString(str){
+    function shortenString(str) {
         return str.length > 300 ? str.substring(0, 300) + '...' : str;
     }
 
-    function randomGreeting(){
+    function randomGreeting() {
         const greetList = ["Do you best today!", "Have some fun.", "Seize the day", "Ad aspera ad astra.", "Magis"]
         return greetList[Math.floor(Math.random() * greetList.length)];
     }
@@ -58,16 +58,17 @@ function Dashboard() {
                     {discussions.map(discussion => (
                         <li key={discussion._id}>
                             <div id='discussion-list-user'>
-                            <Link  to={`/discussion/${discussion._id}`}>{(discussion.title)}</Link>  by {discussion.author.username} on {formatDate(discussion.createdAt)}
+                                <Link to={`/discussion/${discussion._id}`}>{(discussion.title)}</Link>  by {discussion.author.username} on {formatDate(discussion.createdAt)}
                             </div>
                             <p>{'>'}{shortenString(discussion.content)}</p>
                         </li>
                     ))}
                 </ul>
-                <div id='post-new-disc'>
+            </div>
+            <div id='post-new-container'>
+            <div id='post-new-disc'>
                 <Link to="/new-discussion">Post a new discussion</Link>
-                </div>
-
+            </div>
             </div>
         </div>
     );

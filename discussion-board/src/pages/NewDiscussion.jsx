@@ -9,7 +9,7 @@ const NewDiscussion = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const token = localStorage.getItem('token');        
+        const token = localStorage.getItem('token');
         try {
             await api.post('/discussions', { title, content }, {
                 headers: { Authorization: `Bearer ${token}` },
@@ -24,27 +24,28 @@ const NewDiscussion = () => {
     return (
         <div>
             <h1>Post a New Discussion</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="title">Title:</label>
+            <form id='new-disc-container'
+                onSubmit={handleSubmit}>
+                <div id='input-containers'>
+                    {/* <label htmlFor="title">Title:</label> */}
                     <input
                         type="text"
                         id="title"
+                        placeholder='Put title here'
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         required
                     />
-                </div>
-                <div>
-                    <label htmlFor="content">Content:</label>
+                    {/* <label htmlFor="content">Content:</label> */}
                     <textarea
                         id="content"
+                        placeholder='Put content here'
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
                         required
                     />
+                    <button type="submit">Post Discussion</button>
                 </div>
-                <button type="submit">Post Discussion</button>
             </form>
         </div>
     );

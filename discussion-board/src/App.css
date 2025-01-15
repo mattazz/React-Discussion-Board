@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+#navbar{
+  border-bottom: 1px solid black;
+  box-shadow: 0px 4px rgba(255, 255, 255, 0.433);
+  margin-bottom: 20px;
+}
 #login-section{
   /* border: 1px solid yellow; */
   display: flex;
@@ -19,27 +24,24 @@
   margin: 10px;
   padding: 40px;
   border-radius: 10px;
-  border: 1px solid white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid black;
+  box-shadow: 4px 4px rgba(255, 255, 255, 0.667);
   transition: transform 0.2s ease-in-out;
   &:hover {
     transform: scale(1.01);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
 }
-
 #discussion-list-user{
   border: 1px solid white;
   background-color: white;
   color: black;
   padding: 8px;
-  border-radius: 20px;
-  width: 20vw;
+  border-radius: 10px;
+  width: 25vw;
 }
 #discussion-list-user *{
   color: black;
 }
-
 #dashboard-greeting{
   /* border: 1px solid yellow; */
   display: flex;
@@ -47,15 +49,16 @@
   justify-content: center;
   align-items: center;
 }
-
 #dashboard-greeting * {
   /* border: 1px solid red; */
   margin: 0px;
 }
-
-
+#discussion-header{
+  /* border: 1px solid red; */
+  width: 80vw;
+}
 #add-post-container{
-  border-top: 3px solid white;
+  border-top: 3px solid rgba(255, 255, 255, 0.615);
   margin-top: 20px;
   display: flex;
   width: 100vw;
@@ -133,10 +136,10 @@
 }
 
 #comment-container ul li{
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow:  4px 4px rgba(237, 237, 237, 0.246);
   border-radius: 10px;
   padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.245);
+  border: 1px solid rgb(24, 24, 24);
   margin: 10px;
 }
 
@@ -223,9 +226,57 @@ nav ul li {
 }
 
 #post-new-disc{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  background-color: white;
+  color: black;
+  width: 30vw;
+  height: 40px;
+  border-radius: 10px;
+}
+#post-new-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#post-new-disc *{
+  color: black;
 }
 
+#new-disc-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#input-containers{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+  width: 60vw;
+}
+
+#input-containers > input{
+  height: 30px;
+}
+
+#input-containers > textarea{
+  height: 100px;
+}
+
+#input-containers > button{
+  width: 50%;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 nav ul li a {
   text-decoration: none;
   color: white;
