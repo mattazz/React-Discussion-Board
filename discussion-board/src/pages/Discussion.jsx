@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../utils/api';
+import axios from 'axios';
 
 const Discussion = () => {
     const { discussionId } = useParams();
@@ -46,6 +47,25 @@ const Discussion = () => {
         }
     };
 
+    const handleLike = async () => {
+        try {
+            const response = await axios.patch(`http://localhost:5001/api/discussions/${discussionId}/like`);
+            setDiscussion(response.data);
+        } catch (error) {
+            console.error('Error liking discussion:', error);
+        }
+    };
+
+    const handleDislike = async () => {
+        try {
+            const response = await axios.patch(`http://localhost:5001/api/discussions/${discussionId}/dislike`);
+            setDiscussion(response.data);
+        } catch (error) {
+            console.error('Error disliking discussion:', error);
+        }
+    };
+
+    
     if (!discussion) {
         return <div>Loading...</div>;
     }
@@ -57,6 +77,12 @@ const Discussion = () => {
                 <h1>{discussion.title}</h1>
                 <p>{discussion.content}</p>
             </div>
+            <div id='like-dislike'>
+                            <p>Total Likes: {discussion.likes - discussion.dislikes}</p>                                <div id='like-dislike-button-container'>
+                                <button onClick={() => handleLike(discussion._id)}>Like 👍 ({discussion.likes})</button>
+                                <button onClick={() => handleDislike(discussion._id)}>Dislike 👎 ({discussion.dislikes})</button>
+                                </div>
+                            </div>
             <div id='comment-container'>
             <h2>Comments</h2>
                 <ul>

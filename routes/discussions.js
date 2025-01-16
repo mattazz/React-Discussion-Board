@@ -68,5 +68,31 @@ router.get('/:discussionId/posts', async (req, res) => {
     }
 });
 
+router.patch('/:id/like', async (req,res) =>{
+    try{
+        const discussion = await Discussion.findByIdAndUpdate(
+            req.params.id,
+            {$inc: {likes: 1}},
+            {new: true}
+        );
+        res.status(200).json(discussion)
+    } catch(error){
+        res.status(500).json({error: "Error updating likes"})
+    }
+})
+
+router.patch('/:id/dislike', async (req, res) =>{
+    try{
+        const discussion = await Discussion.findByIdAndUpdate(
+            req.params.id,
+            { $inc: {dislikes: 1}},
+            {new: true}
+        );
+        res.status(200).json(discussion);
+    } catch (error){
+        res.status(500).json({error: "Error updating dislikes"})
+    }
+})
+
 module.exports = router;
 

@@ -21,7 +21,6 @@ function Login() {
             navigate('/dashboard'); // Redirect to the dashboard
         } catch (err) {
             console.log(err);
-            
             setError('Invalid credentials');
         }
     };

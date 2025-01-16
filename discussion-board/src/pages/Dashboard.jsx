@@ -3,6 +3,13 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 
+
+/**
+ * Main dashboard for the Discussion board where the user can see
+ * all the returned discussions from MongoDB
+ * 
+ * @return {*} 
+ */
 function Dashboard() {
     const [discussions, setDiscussions] = useState([]);
 
@@ -20,6 +27,31 @@ function Dashboard() {
         fetchDiscussions();
     }, []);
 
+    const handleLike = async (id) => {
+        try {
+            const response = await axios.patch(`http://localhost:5001/api/discussions/${id}/like`);
+            setDiscussions(discussions.map(discussion => discussion._id === id ? response.data : discussion));
+        } catch (error) {
+            console.error('Error liking discussion:', error);
+        }
+    };
+
+    const handleDislike = async (id) => {
+        try {
+            const response = await axios.patch(`http://localhost:5001/api/discussions/${id}/dislike`);
+            setDiscussions(discussions.map(discussion => discussion._id === id ? response.data : discussion));
+        } catch (error) {
+            console.error('Error disliking discussion:', error);
+        }
+    };
+
+
+    
+    /**
+     * Gets current date / time and returns in a custom format
+     *
+     * @return {[Date, Time]} 
+     */
     function getCurrentDateTime() {
         const now = new Date();
         const year = now.getFullYear();
@@ -31,18 +63,39 @@ function Dashboard() {
         return [`${year}-${month}-${day}`, `${hours}:${minutes}:${seconds}`];
     }
 
+    
+    /**
+     *Formats dateString format into local string
+     *
+     * @param {*} dateString
+     * @return {*} 
+     */
     const formatDate = (dateString) => {
         const options = { month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString(undefined, options);
     }
 
+    
+    /**
+     *Shortens long string into short previews for the dashboard list. 
+     *
+     * @param {string} str
+     * @return {string} 
+     */
     function shortenString(str) {
         return str.length > 300 ? str.substring(0, 300) + '...' : str;
     }
 
+    
+    /**
+     * Returns a random greeting from the array.
+     *
+     * @return {string}
+     */
     function randomGreeting() {
         const greetList = ["Do you best today!", "Have some fun.", "Seize the day", "Ad aspera ad astra.", "Magis"]
-        return greetList[Math.floor(Math.random() * greetList.length)];
+        // return greetList[Math.floor(Math.random() * greetList.length)];
+        return greetList[0]
     }
 
 
@@ -61,6 +114,12 @@ function Dashboard() {
                                 <Link to={`/discussion/${discussion._id}`}>{(discussion.title)}</Link>  by {discussion.author.username} on {formatDate(discussion.createdAt)}
                             </div>
                             <p>{'>'}{shortenString(discussion.content)}</p>
+                            <div id='like-dislike'>
+                            <p>{discussion.likes > discussion.dislikes ? `Likes: ${discussion.likes}` : `Dislikes: ${discussion.dislikes}`}</p>                                <div id='like-dislike-button-container'>
+                                <button onClick={() => handleLike(discussion._id)}>Like 👍 ({discussion.likes})</button>
+                                <button onClick={() => handleDislike(discussion._id)}>Dislike 👎 ({discussion.dislikes})</button>
+                                </div>
+                            </div>
                         </li>
                     ))}
                 </ul>
