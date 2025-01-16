@@ -10,6 +10,17 @@ After initializing both front-end and back-end:
 4. `nodemon server.js`
 5. Start local MongoDB
 
+# Features
+
+## Login and Registration
+Secure Registration and Logon through Bcrypt and JWT
+![Login](./readmeFiles/Login.gif)
+
+## Post Creation and User Like Interaction
+Discussions and comments stored in MongoDB as well as other data such as post likes and dislikes. 
+![Post Creation](./readmeFiles/postCreation.gif)
+
+
 ## Security and Authentication
 
 This application uses `bcrypt` and `jwt` for security and authentication.
