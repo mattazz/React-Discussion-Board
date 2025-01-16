@@ -9,6 +9,15 @@ const Discussion = () => {
     const [posts, setPosts] = useState([]);
     const [newPostContent, setNewPostContent] = useState('');
 
+    const fetchPosts = async () => {
+        try {
+            const response = await api.get(`/discussions/${discussionId}/posts`);
+            setPosts(response.data);
+        } catch (error) {
+            console.error('Error fetching posts:', error);
+        }
+    };
+
     useEffect(() => {
         const fetchDiscussion = async () => {
             try {
@@ -41,6 +50,7 @@ const Discussion = () => {
             });
             setPosts([...posts, response.data]);
             setNewPostContent('');
+            fetchPosts(); 
         } catch (error) {
             console.error('Error creating post:', error);
             alert('Failed to create post. Please try again.');
@@ -51,6 +61,7 @@ const Discussion = () => {
         try {
             const response = await axios.patch(`http://localhost:5001/api/discussions/${discussionId}/like`);
             setDiscussion(response.data);
+            fetchPosts(); 
         } catch (error) {
             console.error('Error liking discussion:', error);
         }
@@ -60,8 +71,29 @@ const Discussion = () => {
         try {
             const response = await axios.patch(`http://localhost:5001/api/discussions/${discussionId}/dislike`);
             setDiscussion(response.data);
+            fetchPosts(); 
         } catch (error) {
             console.error('Error disliking discussion:', error);
+        }
+    };
+
+    const handlePostLike = async (postId) => {
+        try {
+            const response = await axios.patch(`http://localhost:5001/api/discussions/posts/${postId}/like`);
+            setPosts(posts.map(post => post._id === postId ? response.data : post));
+            fetchPosts(); 
+        } catch (error) {
+            console.error('Error liking post:', error);
+        }
+    };
+
+    const handlePostDislike = async (postId) => {
+        try {
+            const response = await axios.patch(`http://localhost:5001/api/discussions/posts/${postId}/dislike`);
+            setPosts(posts.map(post => post._id === postId ? response.data : post));
+            fetchPosts(); 
+        } catch (error) {
+            console.error('Error disliking post:', error);
         }
     };
 
@@ -78,19 +110,23 @@ const Discussion = () => {
                 <p>{discussion.content}</p>
             </div>
             <div id='like-dislike'>
-                            <p>Total Likes: {discussion.likes - discussion.dislikes}</p>                                <div id='like-dislike-button-container'>
+                            <p id='total-likes'>Total Likes: {discussion.likes - discussion.dislikes}</p>                                <div id='like-dislike-button-container'>
                                 <button onClick={() => handleLike(discussion._id)}>Like 👍 ({discussion.likes})</button>
                                 <button onClick={() => handleDislike(discussion._id)}>Dislike 👎 ({discussion.dislikes})</button>
                                 </div>
                             </div>
             <div id='comment-container'>
             <h2>Comments</h2>
-                <ul>
+            <ul>
                     {posts.length > 0 ? (
                         posts.map(post => (
                             <li key={post._id}>
                                 <p>{post.content}</p>
                                 <p className='italic'>By: {post.author.username}</p>
+                                <div id='like-dislike-post'>
+                                    <button onClick={() => handlePostLike(post._id)}>Like 👍 ({post.likes})</button>
+                                    <button onClick={() => handlePostDislike(post._id)}>Dislike 👎 ({post.dislikes})</button>
+                                </div>
                             </li>
                         ))
                     ) : (

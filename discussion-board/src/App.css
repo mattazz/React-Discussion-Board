@@ -8,10 +8,23 @@
   align-items: center;
 }
 
+#like-dislike-post{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+#total-likes{
+  background-color: #6458ca;
+  padding: 10px;
+  border-radius: 5px;
+}
+
 #navbar{
   border-bottom: 1px solid black;
   box-shadow: 0px 4px rgba(255, 255, 255, 0.433);
   margin-bottom: 20px;
+
 }
 #login-section{
   /* border: 1px solid yellow; */
@@ -224,7 +237,7 @@ nav ul {
   gap: 10px;
   padding: 0;
   margin: 0;
-  background-color: #333;
+  background-color: #6458ca;
 }
 
 nav ul li {

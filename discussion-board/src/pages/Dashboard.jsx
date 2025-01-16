@@ -13,6 +13,16 @@ import { Link } from 'react-router-dom';
 function Dashboard() {
     const [discussions, setDiscussions] = useState([]);
 
+    const fetchDiscussions = async () => {
+        try {
+            const response = await axios.get('http://localhost:5001/api/discussions');
+            const sortedDiscussions = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            setDiscussions(sortedDiscussions);
+        } catch (error) {
+            console.error('Error fetching discussions:', error);
+        }
+    };
+
     useEffect(() => {
         const fetchDiscussions = async () => {
             try {
@@ -31,6 +41,7 @@ function Dashboard() {
         try {
             const response = await axios.patch(`http://localhost:5001/api/discussions/${id}/like`);
             setDiscussions(discussions.map(discussion => discussion._id === id ? response.data : discussion));
+            fetchDiscussions()
         } catch (error) {
             console.error('Error liking discussion:', error);
         }
@@ -40,6 +51,8 @@ function Dashboard() {
         try {
             const response = await axios.patch(`http://localhost:5001/api/discussions/${id}/dislike`);
             setDiscussions(discussions.map(discussion => discussion._id === id ? response.data : discussion));
+            fetchDiscussions()
+
         } catch (error) {
             console.error('Error disliking discussion:', error);
         }
@@ -115,7 +128,7 @@ function Dashboard() {
                             </div>
                             <p>{'>'}{shortenString(discussion.content)}</p>
                             <div id='like-dislike'>
-                            <p>{discussion.likes > discussion.dislikes ? `Likes: ${discussion.likes}` : `Dislikes: ${discussion.dislikes}`}</p>                                <div id='like-dislike-button-container'>
+                            <p id='total-likes'>Total Likes: {discussion.likes - discussion.dislikes}</p>                                <div id='like-dislike-button-container'>
                                 <button onClick={() => handleLike(discussion._id)}>Like 👍 ({discussion.likes})</button>
                                 <button onClick={() => handleDislike(discussion._id)}>Dislike 👎 ({discussion.dislikes})</button>
                                 </div>
