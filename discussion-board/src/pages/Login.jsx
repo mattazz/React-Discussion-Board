@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
-function Login() {
+function Login({ setIsAuthenticated }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -17,6 +17,7 @@ function Login() {
             const response = await axios.post('http://localhost:5001/api/login', { username, password });
             localStorage.setItem('token', response.data.token);
             setError('');
+            setIsAuthenticated(true)
             alert('Login successful');
             navigate('/dashboard'); // Redirect to the dashboard
         } catch (err) {

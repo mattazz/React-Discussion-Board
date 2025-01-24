@@ -51,8 +51,8 @@ function App() {
           </ul>
         </nav>
         <Routes>
-          <Route path="/login" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Login />} />
-          <Route path="/register" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Register />} />
+          <Route path="/login" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Login setIsAuthenticated={setIsAuthenticated} />} />
+          <Route path="/register" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Register setIsAuthenticated={setIsAuthenticated} />} />
           <Route path="/" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Home />} />
           <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} />
           <Route path="/discussions" element={<RequireAuth><Discussions /></RequireAuth>} />

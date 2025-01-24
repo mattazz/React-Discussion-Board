@@ -59,7 +59,7 @@ function Dashboard() {
     };
 
 
-    
+
     /**
      * Gets current date / time and returns in a custom format
      *
@@ -76,7 +76,7 @@ function Dashboard() {
         return [`${year}-${month}-${day}`, `${hours}:${minutes}:${seconds}`];
     }
 
-    
+
     /**
      *Formats dateString format into local string
      *
@@ -88,7 +88,7 @@ function Dashboard() {
         return new Date(dateString).toLocaleDateString(undefined, options);
     }
 
-    
+
     /**
      *Shortens long string into short previews for the dashboard list. 
      *
@@ -99,7 +99,7 @@ function Dashboard() {
         return str.length > 300 ? str.substring(0, 300) + '...' : str;
     }
 
-    
+
     /**
      * Returns a random greeting from the array.
      *
@@ -123,14 +123,12 @@ function Dashboard() {
                 <ul id='discussion-list-container'>
                     {discussions.map(discussion => (
                         <li key={discussion._id}>
-                            <div id='discussion-list-user'>
-                                <Link to={`/discussion/${discussion._id}`}>{(discussion.title)}</Link>  by {discussion.author.username} on {formatDate(discussion.createdAt)}
-                            </div>
+                                <Link id='discussion-list-user' to={`/discussion/${discussion._id}`}><strong>{(discussion.title)}</strong> by {discussion.author.username} on {formatDate(discussion.createdAt)}</Link>  
                             <p>{'>'}{shortenString(discussion.content)}</p>
                             <div id='like-dislike'>
-                            <p id='total-likes'>Total Likes: {discussion.likes - discussion.dislikes}</p>                                <div id='like-dislike-button-container'>
-                                <button onClick={() => handleLike(discussion._id)}>Like 👍 ({discussion.likes})</button>
-                                <button onClick={() => handleDislike(discussion._id)}>Dislike 👎 ({discussion.dislikes})</button>
+                                <p id='total-likes'>Total Likes: {discussion.likes - discussion.dislikes}</p>                                <div id='like-dislike-button-container'>
+                                    <button onClick={() => handleLike(discussion._id)}>Like 👍 ({discussion.likes})</button>
+                                    <button onClick={() => handleDislike(discussion._id)}>Dislike 👎 ({discussion.dislikes})</button>
                                 </div>
                             </div>
                         </li>
@@ -138,9 +136,9 @@ function Dashboard() {
                 </ul>
             </div>
             <div id='post-new-container'>
-            <div id='post-new-disc'>
-                <Link to="/new-discussion">Post a new discussion</Link>
-            </div>
+                <div id='post-new-disc'>
+                    <Link to="/new-discussion">Post a new discussion</Link>
+                </div>
             </div>
         </div>
     );
